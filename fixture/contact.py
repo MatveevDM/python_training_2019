@@ -2,15 +2,15 @@
 
 class ContactHelper:
 
-    def __init__(self, app_c):
-        self.app_c = app_c
+    def __init__(self, app):
+        self.app = app
 
     def return_to_home_page(self):
-        wd = self.app_c.wd
+        wd = self.app.wd
         wd.find_element_by_link_text("home page").click()
 
     def create(self, group_contact):
-        wd = self.app_c.wd
+        wd = self.app.wd
         # open add new
         wd.find_element_by_link_text("add new").click()
         # init contact creation
