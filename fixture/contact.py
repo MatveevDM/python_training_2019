@@ -13,6 +13,12 @@ class ContactHelper:
         wd = self.app.wd
         # open add new
         wd.find_element_by_link_text("add new").click()
+        self.enter_info_contact(contact, wd)
+        # submit contact creation
+        wd.find_element_by_name("submit").click()
+        self.return_to_home_page()
+
+    def enter_info_contact(self, contact, wd):
         # init contact creation
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -28,9 +34,6 @@ class ContactHelper:
         wd.find_element_by_name("company").send_keys(contact.company)
         wd.find_element_by_name("address").clear()
         wd.find_element_by_name("address").send_keys(contact.address)
-        # submit contact creation
-        wd.find_element_by_name("submit").click()
-        self.return_to_home_page()
 
     def delete_first_contact(self):
         wd = self.app.wd
@@ -41,3 +44,13 @@ class ContactHelper:
         # accept alert
         wd.switch_to_alert().accept()
         wd.find_element_by_link_text("Last name").is_displayed()
+
+    def update_first_contact(self, contact):
+        wd = self.app.wd
+        # submit updation
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.enter_info_contact(contact, wd)
+        # save_info
+        wd.find_element_by_name("update").click()
+        self.return_to_home_page()
+
